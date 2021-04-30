@@ -5,16 +5,17 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {useDispatch, connect} from 'react-redux';
 import {loadNews} from '../../stores/actions/NewsActions/actions';
 import {RootState} from '../../stores/reducers';
+import {NewsReducerType} from '../../stores/reducers/News';
 import {Article} from '../../types';
 import NewsFeed from './Components/NewsFeed/NewsFeed';
 import Search from './Components/Search/Search';
 import styles from './Home.style';
 const Home = ({
   navigation,
-  articles,
+  newsReducer,
 }: {
   navigation: any;
-  articles: Article[];
+  newsReducer: NewsReducerType;
 }) => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -24,14 +25,14 @@ const Home = ({
     <>
       <SafeAreaView style={styles.mainSafeArea}>
         <Search />
-        <NewsFeed articles={articles} navigation={navigation} />
+        <NewsFeed newsReducer={newsReducer} navigation={navigation} />
       </SafeAreaView>
     </>
   );
 };
 const mapStateToProps = (state: any) => {
   return {
-    articles: state.newsReducer.articles,
+    newsReducer: state.newsReducer,
   };
 };
 

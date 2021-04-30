@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {ImageBackground, View, Text} from 'react-native';
 import {Article} from '../../../../types';
+import {format} from 'date-fns';
 import styles from './styles';
 const ArticleView = ({
   navigation,
@@ -10,6 +11,10 @@ const ArticleView = ({
   article: Article;
 }) => {
   const [image, setImage] = useState({uri: article.urlToImage});
+  const formattedDate = useMemo(
+    () => format(new Date(article.publishedAt), 'MMMM do, yyyy H:mma'),
+    [article.publishedAt],
+  );
   useEffect(() => {
     /*handle if there was no image url provided by API
     check the comment in handleImageFailure
@@ -29,6 +34,7 @@ const ArticleView = ({
       source={image}>
       <View style={styles.articleInfo}>
         <Text style={styles.articleTitle}>{article.title}</Text>
+        <Text style={styles.articleDate}>{formattedDate}</Text>
       </View>
     </ImageBackground>
   );

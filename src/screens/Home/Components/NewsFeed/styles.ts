@@ -4,6 +4,11 @@ export default StyleSheet.create({
   newsContainer: {
     flex: 1,
   },
+  articleDate: {
+    color: '#FFF',
+    alignSelf: 'flex-start',
+    fontSize: 12,
+  },
   newsScrollViewStyle: {
     height: device.height,
     width: device.width,
@@ -11,10 +16,10 @@ export default StyleSheet.create({
   },
   articleInfo: {
     backgroundColor: 'rgba(0,0,0,0.4)',
-    height: 0.1 * device.height,
+    height: 0.125 * device.height,
     justifyContent: 'center',
-    alignItems: 'center',
     width: device.width,
+    paddingLeft: 0.1 * device.width,
   },
   articleTitle: {
     color: '#FFF',
