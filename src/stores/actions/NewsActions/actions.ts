@@ -1,6 +1,16 @@
+import { getTopHeadlines } from "../../../API";
+import { TopNewsFilter } from "../../../types";
 import { LOAD_NEWS } from "./actionTypes"
 export const loadNews = () => {
-    return {
-        type: LOAD_NEWS
+    return async (dispatch: any, getState: any) => {
+        const initialFilter: TopNewsFilter = {
+            country: "US",
+            category: "Business"
+        }
+        const response = await getTopHeadlines(initialFilter);
+        return dispatch({
+            type: LOAD_NEWS,
+            news: response
+        });
     }
 }

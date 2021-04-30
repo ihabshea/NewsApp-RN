@@ -1,5 +1,4 @@
 import {NewsResponse} from './APIResponse';
-import {Article} from './News';
+import {Article, TopNewsFilter} from './News';
 import {NewsAction} from './ActionTypes';
-
-export {NewsResponse, Article, NewsAction};
+export {NewsResponse, TopNewsFilter, Article, NewsAction};

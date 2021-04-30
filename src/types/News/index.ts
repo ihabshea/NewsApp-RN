@@ -1,4 +1,4 @@
 import Article from './Article';
 import Source from './Source';
-
-export type {Article, Source};
+import {TopNewsFilter} from './Filters';
+export type {Article, TopNewsFilter, Source};
