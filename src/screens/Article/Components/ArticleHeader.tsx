@@ -13,11 +13,15 @@ const ArticleHeader = ({
   title,
   publishedAt,
   url,
+  author,
+  sourceName,
   image,
   themeReducer,
 }: {
   navigation: any;
   url: string;
+  author: string;
+  sourceName: string;
   publishedAt: string;
   title: string;
   image: string;
@@ -41,7 +45,12 @@ const ArticleHeader = ({
       style={styles.articleHeader}>
       <View style={styles.shadowLayer}>
         <ArticleSocialActions url={url} />
-        <ArticleInfo title={title} publishedAt={publishedAt} />
+        <ArticleInfo
+          author={author}
+          source={sourceName}
+          title={title}
+          publishedAt={publishedAt}
+        />
         <ArticleActions navigation={navigation} />
       </View>
     </ImageBackground>

@@ -14,10 +14,27 @@ export default function getStyleSheet(theme: string) {
     light: 'rgba(0,0,0,0.1)',
   };
   return StyleSheet.create({
+    title: {
+      fontWeight: '700',
+      width: 0.7 * device.width,
+      color: '#FFF',
+      // width: 0.5 * device.width,
+    },
+    authorName: {
+      color: '#FFF',
+    },
+    sourceName: {
+      color: '#FFF',
+    },
+    articleInfo: {
+      height: device.height * 0.14,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
     articleHeader: {
       width: device.width,
       borderRadius: 20,
-      height: device.height * 0.3,
+      height: device.height * 0.42,
     },
     mainActions: {
       flexDirection: 'row',
