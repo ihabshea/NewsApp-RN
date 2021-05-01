@@ -21,8 +21,10 @@ const NewsFeed = ({
     <ArticleView navigation={navigation} article={item} />
   );
   const onRefresh = useCallback(async () => {
-    setRefreshing(true);
-    dispatch(loadNews());
+    if (!newsReducer?.filtered) {
+      setRefreshing(true);
+      dispatch(loadNews());
+    }
   }, []);
   useEffect(() => {
     if (newsReducer?.status === 'ok') {
@@ -40,27 +42,33 @@ const NewsFeed = ({
   };
   return (
     <View style={styles.newsContainer}>
-    {newsReducer?.filtered?
-      <FlatList
-        refreshControl={newsRefresh()}
-        style={styles.newsScrollViewStyle}
-        contentContainerStyle={styles.newsScrollView}
-        data={newsReducer?.filtered}
-        renderItem={showArticle}
-        keyExtractor={article => article.title}
-      />
-    :newsReducer?.articles?
-      <FlatList
-        refreshControl={newsRefresh()}
-        style={styles.newsScrollViewStyle}
-        contentContainerStyle={styles.newsScrollView}
-        data={newsReducer?.articles}
-        renderItem={showArticle}
-        keyExtractor={article => article.title}
-      />
-      :
-  <NoNews />
-}
+      {newsReducer?.filtered ? (
+        <>
+          {newsReducer?.filtered.length > 0 ? (
+            <FlatList
+              refreshControl={newsRefresh()}
+              style={styles.newsScrollViewStyle}
+              contentContainerStyle={styles.newsScrollView}
+              data={newsReducer?.filtered}
+              renderItem={showArticle}
+              keyExtractor={article => article.title}
+            />
+          ) : (
+            <NoNews />
+          )}
+        </>
+      ) : newsReducer?.articles ? (
+        <FlatList
+          refreshControl={newsRefresh()}
+          style={styles.newsScrollViewStyle}
+          contentContainerStyle={styles.newsScrollView}
+          data={newsReducer?.articles}
+          renderItem={showArticle}
+          keyExtractor={article => article.title}
+        />
+      ) : (
+        <NoNews />
+      )}
     </View>
   );
 };

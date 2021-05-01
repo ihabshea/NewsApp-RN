@@ -6,6 +6,7 @@ const initialState: NewsResponse = {
   status: 'pending',
   totalResults: 0,
   articles: [],
+  filtered: null,
 };
 const newsReducer = (state = initialState, action: NewsAction) => {
   const {type} = action;
@@ -14,10 +15,15 @@ const newsReducer = (state = initialState, action: NewsAction) => {
       return action.news;
     case SEARCH_NEWS:
       let term: string = action.term || '';
-      let filtered = state.articles.filter(article => searchArticleTitle(article, term));
+      let filtered;
+      if (term === '') filtered = null;
+      else
+        filtered = state.articles.filter(article =>
+          searchArticleTitle(article, term),
+        );
       return {
         ...state,
-        filtered
+        filtered,
       };
     default:
       return state;
