@@ -4,5 +4,8 @@
   "language": "Language",
   "searchPlaceHolder": "Type in any term to search for it..",
   "readMoreOn": "Read more on",
-  "noNews": "No results for your search.."
+  "noNews": "No results for your search..",
+  "theme": "Theme",
+  "light": "Light",
+  "dark": "Dark"
 }

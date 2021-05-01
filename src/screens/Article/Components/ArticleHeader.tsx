@@ -4,21 +4,27 @@ import styles from './styles';
 import ArticleActions from './ArticleActions';
 import ArticleSocialActions from './ArticleSocialActions';
 import ArticleInfo from './ArticleInfo';
+import {connect} from 'react-redux';
+import makeStyleSheet from './styles';
+import {RootState} from '../../../stores/reducers';
+import {ThemeReducerType} from '../../../stores/reducers/Theme';
 const ArticleHeader = ({
   navigation,
   title,
   publishedAt,
   url,
   image,
+  themeReducer,
 }: {
   navigation: any;
   url: string;
   publishedAt: string;
   title: string;
   image: string;
+  themeReducer: ThemeReducerType;
 }) => {
   const [background, setBackground] = useState({uri: image});
-
+  const styles = makeStyleSheet(themeReducer.theme);
   const handleImageError = () => {
     setBackground(require('../../../assets/articles/defaultArticle.jpg'));
   };
@@ -41,5 +47,9 @@ const ArticleHeader = ({
     </ImageBackground>
   );
 };
-
-export default ArticleHeader;
+const mapStateToProps = (state: RootState) => {
+  return {
+    themeReducer: state.themeReducer,
+  };
+};
+export default connect(mapStateToProps)(ArticleHeader);

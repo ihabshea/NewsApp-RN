@@ -1,5 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from '../screens/Home/Home.screen';
 import Settings from '../screens/Settings/Settings.screen';
@@ -10,15 +14,17 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useSelector, connect} from 'react-redux';
 import i18n from '../i18n';
+import {ThemeReducerType} from '../stores/reducers/Theme';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const mapStateToProps = (state: RootState) => {
   return {
     languageReducer: state.languageReducer,
+    themeReducer: state.themeReducer,
   };
 };
-const HomeTabs = () => {
+const HomeTabs = ({themeReducer}: {themeReducer: ThemeReducerType}) => {
   return (
     <>
       <Tab.Navigator>
@@ -45,16 +51,17 @@ const HomeTabs = () => {
   );
 };
 const HomeTabsWithState = connect(mapStateToProps)(HomeTabs);
-const MainNavigation = () => {
+const MainNavigation = ({themeReducer}: {themeReducer: ThemeReducerType}) => {
   const [loaded, setLoaded] = useState(false);
   let language = useSelector((reducer: RootState) => reducer.languageReducer);
-
+  const isDark = themeReducer.theme === 'dark';
+  let theme = isDark ? DarkTheme : DefaultTheme;
   useEffect(() => {
     i18n.changeLanguage(language.language);
     setLoaded(true);
   }, [language]);
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={theme}>
       {loaded && (
         <Stack.Navigator headerMode="none">
           <Stack.Screen name="Home" component={HomeTabsWithState} />
@@ -64,4 +71,9 @@ const MainNavigation = () => {
     </NavigationContainer>
   );
 };
-export default MainNavigation;
+const mapPropsToStateNav = (state: RootState) => {
+  return {
+    themeReducer: state.themeReducer,
+  };
+};
+export default connect(mapPropsToStateNav)(MainNavigation);

@@ -3,15 +3,22 @@ import {ImageBackground, View, Text} from 'react-native';
 import {Article} from '../../../../types';
 import {format} from 'date-fns';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import styles from './styles';
+import getStyleSheet from './styles';
+import {connect} from 'react-redux';
+import {RootState} from '../../../../stores/reducers';
+import {ThemeReducerType} from '../../../../stores/reducers/Theme';
 const ArticleView = ({
   navigation,
   article,
+  themeReducer,
 }: {
   navigation: any;
   article: Article;
+  themeReducer: ThemeReducerType;
 }) => {
   const [image, setImage] = useState({uri: article.urlToImage});
+  const styles = getStyleSheet(themeReducer.theme);
+
   const formattedDate = useMemo(
     () => format(new Date(article.publishedAt), 'MMMM do, yyyy H:mma'),
     [article.publishedAt],
@@ -27,20 +34,25 @@ const ArticleView = ({
     //this is just a Stephen Colbert cover photo, pretty sure if it's a legit app, would use a cover photo with the app logo
     setImage(require('../../../../assets/articles/defaultArticle.jpg'));
   };
-  const navigateToArticle = () => navigation.navigate("Article", {article});
+  const navigateToArticle = () => navigation.navigate('Article', {article});
   return (
     <TouchableOpacity onPress={navigateToArticle}>
-    <ImageBackground
-      onError={handleImageFailure}
-      imageStyle={styles.articleCover}
-      style={styles.article}
-      source={image}>
-      <View style={styles.articleInfo}>
-        <Text style={styles.articleTitle}>{article.title}</Text>
-        <Text style={styles.articleDate}>{formattedDate}</Text>
-      </View>
-    </ImageBackground>
+      <ImageBackground
+        onError={handleImageFailure}
+        imageStyle={styles.articleCover}
+        style={styles.article}
+        source={image}>
+        <View style={styles.articleInfo}>
+          <Text style={styles.articleTitle}>{article.title}</Text>
+          <Text style={styles.articleDate}>{formattedDate}</Text>
+        </View>
+      </ImageBackground>
     </TouchableOpacity>
   );
 };
-export default ArticleView;
+const mapPropsToState = (state: RootState) => {
+  return {
+    themeReducer: state.themeReducer,
+  };
+};
+export default connect(mapPropsToState)(ArticleView);

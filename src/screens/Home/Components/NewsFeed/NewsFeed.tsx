@@ -1,20 +1,24 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import {View, RefreshControl, Text, FlatList} from 'react-native';
 import {Article} from '../../../../types';
-import styles from './styles';
+import getStyleSheet from './styles';
 import ArticleView from './ArticleView';
-import NewsRefresh from './NewsRefresh';
-import {useDispatch} from 'react-redux';
+import {connect, useDispatch} from 'react-redux';
 import {loadNews} from '../../../../stores/actions/NewsActions/actions';
 import {NewsReducerType} from '../../../../stores/reducers/News';
 import NoNews from './NoNews';
+import {ThemeReducerType} from '../../../../stores/reducers/Theme';
+import {RootState} from '../../../../stores/reducers';
 const NewsFeed = ({
   navigation,
   newsReducer,
+  themeReducer,
 }: {
   navigation: any;
   newsReducer: NewsReducerType;
+  themeReducer: ThemeReducerType;
 }) => {
+  const styles = getStyleSheet(themeReducer.theme);
   const dispatch = useDispatch();
   const [refreshing, setRefreshing] = useState(false);
   const showArticle = ({item}: {item: Article}) => (
@@ -72,4 +76,9 @@ const NewsFeed = ({
     </View>
   );
 };
-export default NewsFeed;
+const mapPropsToState = (state: RootState) => {
+  return {
+    themeReducer: state.themeReducer,
+  };
+};
+export default connect(mapPropsToState)(NewsFeed);

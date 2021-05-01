@@ -2,9 +2,19 @@ import React from 'react';
 import styles from './styles';
 import {View, Text} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
+import createStyleSheet from './styles';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-const ArticleSocialActions = ({url}: {url: string}) => {
+import {RootState} from '../../../stores/reducers';
+import {connect} from 'react-redux';
+import {ThemeReducerType} from '../../../stores/reducers/Theme';
+const ArticleSocialActions = ({
+  url,
+  themeReducer,
+}: {
+  url: string;
+  themeReducer: ThemeReducerType;
+}) => {
+  const styles = createStyleSheet(themeReducer.theme);
   return (
     <View style={styles.socialActions}>
       <TouchableOpacity style={styles.socialIcon}>
@@ -22,5 +32,9 @@ const ArticleSocialActions = ({url}: {url: string}) => {
     </View>
   );
 };
-
-export default ArticleSocialActions;
+const mapStateToProps = (state: RootState) => {
+  return {
+    themeReducer: state.themeReducer,
+  };
+};
+export default connect(mapStateToProps)(ArticleSocialActions);

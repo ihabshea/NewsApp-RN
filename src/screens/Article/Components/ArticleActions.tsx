@@ -2,8 +2,19 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import {connect} from 'react-redux';
+import makeStyleSheet from './styles';
+import {RootState} from '../../../stores/reducers';
+import {ThemeReducerType} from '../../../stores/reducers/Theme';
 import styles from './styles';
-const ArticleActions = ({navigation}: {navigation: any}) => {
+const ArticleActions = ({
+  navigation,
+  themeReducer,
+}: {
+  navigation: any;
+  themeReducer: ThemeReducerType;
+}) => {
+  const styles = makeStyleSheet(themeReducer.theme);
   const navigateBack = () => navigation.goBack();
   return (
     <View style={styles.mainActions}>
@@ -16,5 +27,9 @@ const ArticleActions = ({navigation}: {navigation: any}) => {
     </View>
   );
 };
-
-export default ArticleActions;
+const mapStateToProps = (state: RootState) => {
+  return {
+    themeReducer: state.themeReducer,
+  };
+};
+export default connect(mapStateToProps)(ArticleActions);

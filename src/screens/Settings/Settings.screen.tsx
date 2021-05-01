@@ -5,16 +5,31 @@ import {useDispatch, connect} from 'react-redux';
 import i18n from '../../i18n';
 import {withI18n} from 'react-i18next';
 import {changeLanguage} from '../../stores/actions/LanguageActions/actions';
-import styles from './Settings.style';
+import createStyleSheet from './Settings.style';
 import {RootState} from '../../stores/reducers';
+import {changeTheme} from '../../stores/actions/ThemeActions/actions';
+import {ThemeReducerType} from '../../stores/reducers/Theme';
 
-const SettingsScreen = ({navigation}: {navigation: any}) => {
+const SettingsScreen = ({
+  navigation,
+  themeReducer,
+}: {
+  navigation: any;
+  themeReducer: ThemeReducerType;
+}) => {
+  const styles = createStyleSheet(themeReducer.theme);
   const dispatch = useDispatch();
   const switchToArabic = () => {
     dispatch(changeLanguage('ar'));
   };
   const switchToEnglish = () => {
     dispatch(changeLanguage('en'));
+  };
+  const switchToLight = () => {
+    dispatch(changeTheme('light'));
+  };
+  const switchToDark = () => {
+    dispatch(changeTheme('dark'));
   };
   const isArabic = i18n.language === 'ar';
   return (
@@ -25,12 +40,24 @@ const SettingsScreen = ({navigation}: {navigation: any}) => {
       <TouchableOpacity
         style={isArabic ? styles.rtlOption : styles.option}
         onPress={switchToArabic}>
-        <Text>العربية</Text>
+        <Text style={styles.optionText}>العربية</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={isArabic ? styles.rtlOption : styles.option}
         onPress={switchToEnglish}>
-        <Text>English</Text>
+        <Text style={styles.optionText}>English</Text>
+      </TouchableOpacity>
+      <Text style={styles.subHeadingText}>{i18n.t('theme')}</Text>
+
+      <TouchableOpacity
+        style={isArabic ? styles.rtlOption : styles.option}
+        onPress={switchToLight}>
+        <Text style={styles.optionText}>{i18n.t('light')}</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={isArabic ? styles.rtlOption : styles.option}
+        onPress={switchToDark}>
+        <Text style={styles.optionText}>{i18n.t('dark')}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -38,6 +65,7 @@ const SettingsScreen = ({navigation}: {navigation: any}) => {
 const mapStateToProps = (state: RootState) => {
   return {
     languageReducer: state.languageReducer,
+    themeReducer: state.themeReducer,
   };
 };
 export default connect(mapStateToProps)(SettingsScreen);

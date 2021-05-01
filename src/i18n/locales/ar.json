@@ -4,5 +4,8 @@
   "language": "اللغة",
   "searchPlaceHolder": "أدخل اي مصطلح للبحث عنه..",
   "readMoreOn": "إقرأ المزيد في",
-  "noNews": "لا نتيجة لبحثك"
+  "noNews": "لا نتيجة لبحثك",
+  "theme": "الشكل",
+  "light": "فاتح",
+  "dark": "داكن"
 }
