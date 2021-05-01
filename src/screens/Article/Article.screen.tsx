@@ -1,7 +1,7 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
 import {Article} from '../../types';
-import styles from './Article.styles';
+import styles from './Article.style';
 import ArticleContent from './Components/ArticleContent';
 import ArticleHeader from './Components/ArticleHeader';
 const ArticleScreen = ({route, navigation}: {route: any; navigation: any}) => {
