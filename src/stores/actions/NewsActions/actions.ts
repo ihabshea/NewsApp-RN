@@ -1,6 +1,14 @@
 import {getTopHeadlines} from '../../../API';
-import {TopNewsFilter} from '../../../types';
-import {LOAD_NEWS} from './actionTypes';
+import {NewsResponse, TopNewsFilter} from '../../../types';
+import {LOAD_NEWS, SEARCH_NEWS} from './actionTypes';
+export const searchNews = (term: string) => {
+  return (dispatch: any, getState: any) => {
+    return dispatch({
+      type: SEARCH_NEWS,
+      term,
+    });
+  };
+};
 export const loadNews = () => {
   return async (dispatch: any, getState: any) => {
     const initialFilter: TopNewsFilter = {

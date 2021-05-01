@@ -1,3 +1,4 @@
 import NewsAction from './NewsAction';
+import SearchAction from './SearchAction';
 
-export { NewsAction };
+export {NewsAction, SearchAction};

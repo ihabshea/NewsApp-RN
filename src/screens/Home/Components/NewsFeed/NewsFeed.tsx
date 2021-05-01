@@ -7,7 +7,7 @@ import NewsRefresh from './NewsRefresh';
 import {useDispatch} from 'react-redux';
 import {loadNews} from '../../../../stores/actions/NewsActions/actions';
 import {NewsReducerType} from '../../../../stores/reducers/News';
-
+import NoNews from './NoNews';
 const NewsFeed = ({
   navigation,
   newsReducer,
@@ -40,6 +40,16 @@ const NewsFeed = ({
   };
   return (
     <View style={styles.newsContainer}>
+    {newsReducer?.filtered?
+      <FlatList
+        refreshControl={newsRefresh()}
+        style={styles.newsScrollViewStyle}
+        contentContainerStyle={styles.newsScrollView}
+        data={newsReducer?.filtered}
+        renderItem={showArticle}
+        keyExtractor={article => article.title}
+      />
+    :newsReducer?.articles?
       <FlatList
         refreshControl={newsRefresh()}
         style={styles.newsScrollViewStyle}
@@ -48,6 +58,9 @@ const NewsFeed = ({
         renderItem={showArticle}
         keyExtractor={article => article.title}
       />
+      :
+  <NoNews />
+}
     </View>
   );
 };
