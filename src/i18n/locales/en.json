@@ -1,5 +1,8 @@
 {
   "home": "Home",
   "settings": "Settings",
-  "language": "Language"
+  "language": "Language",
+  "searchPlaceHolder": "Type in any term to search for it..",
+  "readMoreOn": "Read more on",
+  "noNews": "No results for your search.."
 }

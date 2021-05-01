@@ -5,6 +5,7 @@ import styles from './Article.style';
 import {withI18n} from 'react-i18next';
 import ArticleContent from './Components/ArticleContent';
 import ArticleHeader from './Components/ArticleHeader';
+
 const ArticleScreen = ({route, navigation}: {route: any; navigation: any}) => {
   const {article}: {article: Article} = route.params;
   const {urlToImage: image, source, title, publishedAt, content, url} = article;

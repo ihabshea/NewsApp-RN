@@ -21,10 +21,15 @@ export default StyleSheet.create({
     width: device.width,
     paddingLeft: 0.1 * device.width,
   },
-  noNews:{
-    color:"#000",
-    fontWeight:'700',
-    fontSize:32,
+  noNewsArea: {
+    width: device.width,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noNews: {
+    color: '#000',
+    fontWeight: '700',
+    fontSize: 24,
   },
   articleTitle: {
     color: '#FFF',
