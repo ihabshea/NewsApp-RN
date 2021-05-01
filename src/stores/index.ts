@@ -7,7 +7,6 @@ import reducers from './reducers';
 export const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: [],
 };
 const persistedReducer = persistReducer(persistConfig, reducers);
 export const store = createStore(persistedReducer, applyMiddleware(thunk));

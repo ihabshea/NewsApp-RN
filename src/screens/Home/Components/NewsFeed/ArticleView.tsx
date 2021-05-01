@@ -2,6 +2,7 @@ import React, {useEffect, useMemo, useState} from 'react';
 import {ImageBackground, View, Text} from 'react-native';
 import {Article} from '../../../../types';
 import {format} from 'date-fns';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import styles from './styles';
 const ArticleView = ({
   navigation,
@@ -26,7 +27,9 @@ const ArticleView = ({
     //this is just a Stephen Colbert cover photo, pretty sure if it's a legit app, would use a cover photo with the app logo
     setImage(require('../../../../assets/articles/defaultArticle.jpg'));
   };
+  const navigateToArticle = () => navigation.navigate("Article", {article});
   return (
+    <TouchableOpacity onPress={navigateToArticle}>
     <ImageBackground
       onError={handleImageFailure}
       imageStyle={styles.articleCover}
@@ -37,6 +40,7 @@ const ArticleView = ({
         <Text style={styles.articleDate}>{formattedDate}</Text>
       </View>
     </ImageBackground>
+    </TouchableOpacity>
   );
 };
 export default ArticleView;

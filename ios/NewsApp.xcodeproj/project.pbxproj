@@ -114,7 +114,6 @@
 				66A855CE60ECE90560E541AF /* Pods-NewsApp-NewsAppTests.debug.xcconfig */,
 				4074DF5BA721892227AB8860 /* Pods-NewsApp-NewsAppTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
