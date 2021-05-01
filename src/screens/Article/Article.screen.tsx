@@ -2,6 +2,7 @@ import React from 'react';
 import {SafeAreaView} from 'react-native';
 import {Article} from '../../types';
 import styles from './Article.style';
+import {withI18n} from 'react-i18next';
 import ArticleContent from './Components/ArticleContent';
 import ArticleHeader from './Components/ArticleHeader';
 const ArticleScreen = ({route, navigation}: {route: any; navigation: any}) => {
@@ -21,4 +22,4 @@ const ArticleScreen = ({route, navigation}: {route: any; navigation: any}) => {
     </>
   );
 };
-export default ArticleScreen;
+export default withI18n()(ArticleScreen);

@@ -30,7 +30,7 @@ const Home = ({
     </>
   );
 };
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootState) => {
   return {
     newsReducer: state.newsReducer,
   };

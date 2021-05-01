@@ -1,4 +1,4 @@
 import NewsAction from './NewsAction';
 import SearchAction from './SearchAction';
-
-export {NewsAction, SearchAction};
+import LanguageAction from './LanguageAction';
+export {NewsAction, LanguageAction, SearchAction};
