@@ -4,6 +4,7 @@ import {
   DefaultTheme,
   DarkTheme,
 } from '@react-navigation/native';
+import linking from '../linking/linking';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from '../screens/Home/Home.screen';
 import Settings from '../screens/Settings/Settings.screen';
@@ -61,7 +62,7 @@ const MainNavigation = ({themeReducer}: {themeReducer: ThemeReducerType}) => {
     setLoaded(true);
   }, [language]);
   return (
-    <NavigationContainer theme={theme}>
+    <NavigationContainer linking={linking} theme={theme}>
       {loaded && (
         <Stack.Navigator headerMode="none">
           <Stack.Screen name="Home" component={HomeTabsWithState} />
