@@ -1,12 +1,18 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-import {Article} from '../../types';
-import styles from './Article.style';
+import {Article, RootStackParamList} from '../../types';
+
 import {withI18n} from 'react-i18next';
 import ArticleContent from './Components/ArticleContent';
 import ArticleHeader from './Components/ArticleHeader';
-
-const ArticleScreen = ({route, navigation}: {route: any; navigation: any}) => {
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RouteProp} from '@react-navigation/core';
+type ArticleScreenRouteProp = RouteProp<RootStackParamList, 'Article'>;
+interface Props {
+  route: ArticleScreenRouteProp;
+  navigation: StackNavigationProp<RootStackParamList, 'Article'>;
+}
+const ArticleScreen: React.FC<Props> = ({route, navigation}) => {
   const {article}: {article: Article} = route.params;
   const {
     urlToImage: image,

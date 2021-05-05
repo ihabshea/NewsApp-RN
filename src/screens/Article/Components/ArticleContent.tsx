@@ -7,16 +7,17 @@ import makeStyleSheet from './styles';
 import {ThemeReducerType} from '../../../stores/reducers/Theme';
 import {connect} from 'react-redux';
 import {RootState} from '../../../stores/reducers';
-const ArticleContent = ({
-  url,
-  sourceName,
-  content,
-  themeReducer,
-}: {
+interface Props {
   url: string;
   sourceName: string;
   content: string;
   themeReducer: ThemeReducerType;
+}
+const ArticleContent: React.FC<Props> = ({
+  url,
+  sourceName,
+  content,
+  themeReducer,
 }) => {
   const goToSite = () => Linking.openURL(url);
   const styles = makeStyleSheet(themeReducer.theme);

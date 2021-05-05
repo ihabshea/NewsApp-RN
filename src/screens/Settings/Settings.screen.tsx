@@ -10,13 +10,10 @@ import {RootState} from '../../stores/reducers';
 import {changeTheme} from '../../stores/actions/ThemeActions/actions';
 import {ThemeReducerType} from '../../stores/reducers/Theme';
 
-const SettingsScreen = ({
-  navigation,
-  themeReducer,
-}: {
-  navigation: any;
+interface Props {
   themeReducer: ThemeReducerType;
-}) => {
+}
+const SettingsScreen: React.FC<Props> = ({themeReducer}) => {
   const styles = createStyleSheet(themeReducer.theme);
   const dispatch = useDispatch();
   const switchToArabic = () => {

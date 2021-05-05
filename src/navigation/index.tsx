@@ -16,9 +16,10 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {useSelector, connect} from 'react-redux';
 import i18n from '../i18n';
 import {ThemeReducerType} from '../stores/reducers/Theme';
+import {RootStackParamList} from '../types';
 
-const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator<RootStackParamList>();
 const mapStateToProps = (state: RootState) => {
   return {
     languageReducer: state.languageReducer,
@@ -52,8 +53,9 @@ const HomeTabs = ({themeReducer}: {themeReducer: ThemeReducerType}) => {
   );
 };
 const HomeTabsWithState = connect(mapStateToProps)(HomeTabs);
+
 const MainNavigation = ({themeReducer}: {themeReducer: ThemeReducerType}) => {
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState<boolean>(false);
   let language = useSelector((reducer: RootState) => reducer.languageReducer);
   const isDark = themeReducer.theme === 'dark';
   let theme = isDark ? DarkTheme : DefaultTheme;

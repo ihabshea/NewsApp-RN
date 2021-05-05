@@ -7,18 +7,19 @@ import {connect} from 'react-redux';
 import {format} from 'date-fns';
 import {RootState} from '../../../stores/reducers';
 import {ThemeReducerType} from '../../../stores/reducers/Theme';
-const ArticleInfo = ({
-  title,
-  author,
-  source,
-  publishedAt,
-  themeReducer,
-}: {
+interface Props {
   title: string;
   author: string;
   source: string;
   publishedAt: string;
   themeReducer: ThemeReducerType;
+}
+const ArticleInfo: React.FC<Props> = ({
+  title,
+  author,
+  source,
+  publishedAt,
+  themeReducer,
 }) => {
   const formattedDate = useMemo(
     () => format(new Date(publishedAt), 'MMMM do, yyyy H:mma'),

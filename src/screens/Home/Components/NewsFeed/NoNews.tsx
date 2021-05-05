@@ -5,7 +5,10 @@ import i18n from '../../../../i18n';
 import {RootState} from '../../../../stores/reducers';
 import {ThemeReducerType} from '../../../../stores/reducers/Theme';
 import getStyleSheet from './styles';
-const NoNews = ({themeReducer}: {themeReducer: ThemeReducerType}) => {
+interface Props {
+  themeReducer: ThemeReducerType;
+}
+const NoNews: React.FC<Props> = ({themeReducer}) => {
   const styles = getStyleSheet(themeReducer.theme);
   return (
     <View style={styles.noNewsArea}>

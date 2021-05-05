@@ -7,15 +7,12 @@ import getStyleSheet from './styles';
 import {connect} from 'react-redux';
 import {RootState} from '../../../../stores/reducers';
 import {ThemeReducerType} from '../../../../stores/reducers/Theme';
-const ArticleView = ({
-  navigation,
-  article,
-  themeReducer,
-}: {
+interface Props {
   navigation: any;
   article: Article;
   themeReducer: ThemeReducerType;
-}) => {
+}
+const ArticleView: React.FC<Props> = ({navigation, article, themeReducer}) => {
   const [image, setImage] = useState({uri: article.urlToImage});
   const styles = getStyleSheet(themeReducer.theme);
 

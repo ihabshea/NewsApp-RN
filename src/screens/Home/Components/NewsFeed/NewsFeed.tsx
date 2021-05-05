@@ -9,18 +9,15 @@ import {NewsReducerType} from '../../../../stores/reducers/News';
 import NoNews from './NoNews';
 import {ThemeReducerType} from '../../../../stores/reducers/Theme';
 import {RootState} from '../../../../stores/reducers';
-const NewsFeed = ({
-  navigation,
-  newsReducer,
-  themeReducer,
-}: {
+interface Props {
   navigation: any;
   newsReducer: NewsReducerType;
   themeReducer: ThemeReducerType;
-}) => {
+}
+const NewsFeed: React.FC<Props> = ({navigation, newsReducer, themeReducer}) => {
   const styles = getStyleSheet(themeReducer.theme);
   const dispatch = useDispatch();
-  const [refreshing, setRefreshing] = useState(false);
+  const [refreshing, setRefreshing] = useState<boolean>(false);
   const showArticle = ({item}: {item: Article}) => (
     <ArticleView navigation={navigation} article={item} />
   );

@@ -7,13 +7,11 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {RootState} from '../../../stores/reducers';
 import {connect} from 'react-redux';
 import {ThemeReducerType} from '../../../stores/reducers/Theme';
-const ArticleSocialActions = ({
-  url,
-  themeReducer,
-}: {
+interface Props {
   url: string;
   themeReducer: ThemeReducerType;
-}) => {
+}
+const ArticleSocialActions: React.FC<Props> = ({url, themeReducer}) => {
   const styles = createStyleSheet(themeReducer.theme);
   return (
     <View style={styles.socialActions}>

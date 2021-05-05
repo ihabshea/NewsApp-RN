@@ -8,16 +8,7 @@ import {connect} from 'react-redux';
 import makeStyleSheet from './styles';
 import {RootState} from '../../../stores/reducers';
 import {ThemeReducerType} from '../../../stores/reducers/Theme';
-const ArticleHeader = ({
-  navigation,
-  title,
-  publishedAt,
-  url,
-  author,
-  sourceName,
-  image,
-  themeReducer,
-}: {
+interface Props {
   navigation: any;
   url: string;
   author: string;
@@ -26,8 +17,21 @@ const ArticleHeader = ({
   title: string;
   image: string;
   themeReducer: ThemeReducerType;
+}
+interface ImageURI {
+  uri: string;
+}
+const ArticleHeader: React.FC<Props> = ({
+  navigation,
+  title,
+  publishedAt,
+  url,
+  author,
+  sourceName,
+  image,
+  themeReducer,
 }) => {
-  const [background, setBackground] = useState({uri: image});
+  const [background, setBackground] = useState<ImageURI>({uri: image});
   const styles = makeStyleSheet(themeReducer.theme);
   const handleImageError = () => {
     setBackground(require('../../../assets/articles/defaultArticle.jpg'));

@@ -7,13 +7,11 @@ import makeStyleSheet from './styles';
 import {RootState} from '../../../stores/reducers';
 import {ThemeReducerType} from '../../../stores/reducers/Theme';
 import styles from './styles';
-const ArticleActions = ({
-  navigation,
-  themeReducer,
-}: {
+interface Props {
   navigation: any;
   themeReducer: ThemeReducerType;
-}) => {
+}
+const ArticleActions: React.FC<Props> = ({navigation, themeReducer}) => {
   const styles = makeStyleSheet(themeReducer.theme);
   const navigateBack = () => navigation.goBack();
   return (
