@@ -1,6 +1,6 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import {View, RefreshControl, Text, FlatList} from 'react-native';
-import {Article} from '../../../../types';
+import {Article, RootStackParamList} from '../../../../types';
 import getStyleSheet from './styles';
 import ArticleView from './ArticleView';
 import {connect, useDispatch} from 'react-redux';
@@ -9,8 +9,9 @@ import {NewsReducerType} from '../../../../stores/reducers/News';
 import NoNews from './NoNews';
 import {ThemeReducerType} from '../../../../stores/reducers/Theme';
 import {RootState} from '../../../../stores/reducers';
+import {StackNavigationProp} from '@react-navigation/stack';
 interface Props {
-  navigation: any;
+  navigation: StackNavigationProp<RootStackParamList, 'Home'>;
   newsReducer: NewsReducerType;
   themeReducer: ThemeReducerType;
 }

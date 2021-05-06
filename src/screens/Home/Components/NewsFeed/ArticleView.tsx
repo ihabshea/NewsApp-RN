@@ -1,14 +1,15 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {ImageBackground, View, Text} from 'react-native';
-import {Article} from '../../../../types';
+import {Article, RootStackParamList} from '../../../../types';
 import {format} from 'date-fns';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import getStyleSheet from './styles';
 import {connect} from 'react-redux';
 import {RootState} from '../../../../stores/reducers';
 import {ThemeReducerType} from '../../../../stores/reducers/Theme';
+import {StackNavigationProp} from '@react-navigation/stack';
 interface Props {
-  navigation: any;
+  navigation: StackNavigationProp<RootStackParamList, 'Home'>;
   article: Article;
   themeReducer: ThemeReducerType;
 }
