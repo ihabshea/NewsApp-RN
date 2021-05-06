@@ -1,7 +1,6 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-import {Article, RootStackParamList} from '../../types';
-
+import {RootStackParamList} from '../../types';
 import {withI18n} from 'react-i18next';
 import ArticleContent from './Components/ArticleContent';
 import ArticleHeader from './Components/ArticleHeader';
@@ -13,7 +12,7 @@ interface Props {
   navigation: StackNavigationProp<RootStackParamList, 'Article'>;
 }
 const ArticleScreen: React.FC<Props> = ({route, navigation}) => {
-  const {article}: {article: Article} = route.params;
+  const {article} = route.params;
   const {
     urlToImage: image,
     source,

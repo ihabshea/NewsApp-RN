@@ -8,8 +8,10 @@ import {connect} from 'react-redux';
 import makeStyleSheet from './styles';
 import {RootState} from '../../../stores/reducers';
 import {ThemeReducerType} from '../../../stores/reducers/Theme';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParamList} from '../../../types';
 interface Props {
-  navigation: any;
+  navigation: StackNavigationProp<RootStackParamList, 'Article'>;
   url: string;
   author: string;
   sourceName: string;

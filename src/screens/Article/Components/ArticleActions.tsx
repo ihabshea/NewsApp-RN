@@ -7,8 +7,10 @@ import makeStyleSheet from './styles';
 import {RootState} from '../../../stores/reducers';
 import {ThemeReducerType} from '../../../stores/reducers/Theme';
 import styles from './styles';
+import {RootStackParamList} from '../../../types';
+import {StackNavigationProp} from '@react-navigation/stack';
 interface Props {
-  navigation: any;
+  navigation: StackNavigationProp<RootStackParamList, 'Article'>;
   themeReducer: ThemeReducerType;
 }
 const ArticleActions: React.FC<Props> = ({navigation, themeReducer}) => {
