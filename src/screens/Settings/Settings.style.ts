@@ -1,15 +1,16 @@
 import {StyleSheet} from 'react-native';
 import {device} from '../../constants';
-export default function getStyleSheet(theme: string) {
-  let foregroundColor = {
+import {colors, themeE} from '../../types';
+export default function getStyleSheet(theme: themeE) {
+  let foregroundColor: colors = {
     dark: '#FFF',
     light: '#000',
   };
-  let backgroundColor = {
+  let backgroundColor: colors = {
     dark: '#000',
     light: '#FFF',
   };
-  let wBackgroundColor = {
+  let wBackgroundColor: colors = {
     dark: 'rgba(255,255,255,0.1)',
     light: 'rgba(0,0,0,0.1)',
   };

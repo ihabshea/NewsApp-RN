@@ -19,7 +19,7 @@ import {ThemeReducerType} from '../stores/reducers/Theme';
 import {RootStackParamList} from '../types';
 
 const Stack = createStackNavigator<RootStackParamList>();
-const Tab = createBottomTabNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator();
 const mapStateToProps = (state: RootState) => {
   return {
     languageReducer: state.languageReducer,
